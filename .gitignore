@@ -1,0 +1,5 @@
+# mode modules
+node_modules/
+
+# dist directory
+dist/

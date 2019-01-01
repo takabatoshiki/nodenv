@@ -1,0 +1,18 @@
+# current directory
+root = true
+# all files config
+[*]
+# line feed code
+end_of_line = lf
+# character code
+charset = utf-8
+# insert final newline
+insert_final_newline = true
+# trim whitespace
+trim_trailing_whitespace = true
+# indent
+indent_style = space
+# extention
+[*.{js,jsx,css,pcss}]
+# indext width
+indent_size = 2
