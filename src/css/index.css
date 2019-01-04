@@ -1,0 +1,15 @@
+:root {
+  --primary-color: skyblue;
+}
+
+html {
+  color: var(--primary-color);
+  font-size: 0.9rem;
+}
+
+.foo {
+  color: white;
+  & .bar {
+    color: blue;
+  }
+}

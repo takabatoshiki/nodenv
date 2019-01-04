@@ -1,13 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 
 const src = path.join(__dirname, 'src');
 const dist = path.join(__dirname, 'dist');
 
 module.exports = {
   mode: 'development',
-  entry: path.resolve(src, 'js/index.js'),
+  entry: path.resolve(src, 'js/render.jsx'),
   output: {
     filename: 'index.bundle.js',
     path: dist,
@@ -29,6 +30,22 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
       },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: [
+          MiniCSSExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName: '[name]__[local]--[hash:base64:5]',
+            },
+          },
+          'postcss-loader',
+        ],
+      },
     ],
   },
   devServer: {
@@ -38,7 +55,10 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.resolve(src, 'html/index.html'),
+    }),
+    new MiniCSSExtractPlugin(),
   ],
   devtool: 'cheap-module-eval-source-map',
 };
