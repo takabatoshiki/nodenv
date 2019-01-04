@@ -48,6 +48,7 @@ module.exports = {
       },
     ],
   },
+  devtool: 'cheap-module-eval-source-map',
   devServer: {
     contentBase: dist,
     hot: true,
@@ -58,7 +59,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(src, 'html/index.html'),
     }),
-    new MiniCSSExtractPlugin(),
+    new MiniCSSExtractPlugin({
+      filename: 'app.css',
+    }),
   ],
-  devtool: 'cheap-module-eval-source-map',
 };
